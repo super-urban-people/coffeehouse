@@ -13,11 +13,13 @@ import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
+import CoffeeHouse from "components/CoffeeHouse";
 import QuickStart from "components/QuickStart";
 import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems";
+
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -67,12 +69,6 @@ const App = ({ isServerInfo }) => {
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
-            <TokenPrice
-              address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
-              chain="eth"
-              image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
-              size="40px"
-            />
             <NativeBalance />
             <Account />
           </div>
@@ -80,21 +76,12 @@ const App = ({ isServerInfo }) => {
 
         <div style={styles.content}>
           <Switch>
-            <Route exact path="/quickstart">
-              <QuickStart isServerInfo={isServerInfo} />
-            </Route>
-            <Route path="/wallet">
-              <Wallet />
+            <Route exact path="/coffeehouse">
+              <CoffeeHouse isServerInfo={isServerInfo} />
             </Route>
             <Route path="/1inch">
               <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
-                <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
-                  <DEX chain="eth" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
-                  <DEX chain="bsc" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
+                <Tabs.TabPane tab={<span>Polygon</span>} key="1" >
                   <DEX chain="polygon" />
                 </Tabs.TabPane>
               </Tabs>
@@ -102,26 +89,17 @@ const App = ({ isServerInfo }) => {
             <Route path="/erc20balance">
               <ERC20Balance />
             </Route>
-            <Route path="/onramp">
-              <Ramper />
-            </Route>
             <Route path="/erc20transfers">
               <ERC20Transfers />
             </Route>
             <Route path="/nftBalance">
               <NFTBalance />
             </Route>
-            <Route path="/contract">
-              <Contract />
-            </Route>
             <Route path="/">
-              <Redirect to="/quickstart" />
-            </Route>
-            <Route path="/ethereum-boilerplate">
-              <Redirect to="/quickstart" />
+              <Redirect to="/coffeehouse" />
             </Route>
             <Route path="/nonauthenticated">
-              <>Please login using the "Authenticate" button</>
+              <>Please login using the "Connect" button</>
             </Route>
           </Switch>
         </div>
