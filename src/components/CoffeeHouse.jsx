@@ -99,7 +99,7 @@ export default function CoffeeHouse({ isServerInfo }) {
             </Timeline.Item>
 
             <Timeline.Item dot="🚀">
-              <Text style={styles.text}>
+              <Text delete style={styles.text}>
                 Upload website to AWS
               </Text>
             </Timeline.Item>
